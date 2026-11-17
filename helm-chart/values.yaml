@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: srikantheggoju/expense-tracker
-  tag: "v1"
+  tag: "5"
 
 service:
   type: ClusterIP

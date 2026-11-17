@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: expense-tracker
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: expense-tracker
+
+  template:
+    metadata:
+      labels:
+        app: expense-tracker
+
+    spec:
+      containers:
+      - name: expense-tracker
+
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 5000
+
+        env:
+        - name: APP_VERSION
+          value: {{ .Values.env.APP_VERSION | quote }}
+
+        - name: ENV
+          value: {{ .Values.env.ENV | quote }}

@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: expense-tracker
+  namespace: argocd
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/Srikantheggoju/Gitops-repo.git
+    targetRevision: HEAD
+    path: helm-chart
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: expense-prod
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+    - CreateNamespace=true

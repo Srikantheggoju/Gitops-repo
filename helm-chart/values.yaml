@@ -1,0 +1,17 @@
+replicaCount: 2
+
+image:
+  repository: srikantheggoju/expense-tracker
+  tag: "v1"
+
+service:
+  type: ClusterIP
+  port: 80
+
+env:
+  APP_VERSION: "v1"
+  ENV: "dev"
+
+ingress:
+  enabled: true
+  host: expense.local
